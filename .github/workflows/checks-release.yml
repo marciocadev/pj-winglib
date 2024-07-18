@@ -6,8 +6,8 @@ on:
     branches:
       - main
     paths:
-      - /home/marcio/code/pj-winglib/checks/**
-      - '"!/home/marcio/code/pj-winglib/checks/package-lock.json"'
+      - checks/**
+      - '"!checks/package-lock.json"'
 jobs:
   build-checks:
     runs-on: ubuntu-latest
@@ -36,16 +36,16 @@ jobs:
         working-directory: checks
       - name: Get package version
         run: echo WINGLIB_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
-        working-directory: /home/marcio/code/pj-winglib/checks
+        working-directory: checks
       - name: Echo WINGLIB_VERSION
         run: echo ${{ env.WINGLIB_VERSION }}
       - name: ls
-        run: "ls -la "
+        run: ls -la
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --access=public --registry https://registry.npmjs.org --tag latest *.tgz
-        working-directory: /home/marcio/code/pj-winglib/checks
+        working-directory: checks
       - name: Tag commit
         uses: tvdias/github-tagger@v0.0.1
         with:
