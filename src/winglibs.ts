@@ -112,7 +112,7 @@ export class WinglibProject extends Project {
             name: `${this.name} v$\{\{ env.WINGLIB_VERSION \}\}`,
             tag_name: `${this.name}-v$\{\{ env.WINGLIB_VERSION \}\}`,
             files: `${this.name}/*.tgz`,
-            token: '${{ env.PROJEN_GITHUB_TOKEN }}',
+            token: '${{ secrets.PROJEN_GITHUB_TOKEN }}',
           },
         },
       ],
