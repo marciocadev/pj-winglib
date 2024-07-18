@@ -57,4 +57,4 @@ jobs:
           name: dynamodb v${{ env.WINGLIB_VERSION }}
           tag_name: dynamodb-v${{ env.WINGLIB_VERSION }}
           files: dynamodb/*.tgz
-          token: v${{ env.PROJEN_GITHUB_TOKEN }}
+          token: ${{ env.PROJEN_GITHUB_TOKEN }}
