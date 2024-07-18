@@ -228,7 +228,7 @@ export class WinglibProject extends Project {
         '  },',
         '  "author": {',
         '    "name": "Marcio Cruz de Almeida",',
-        '    "email": "marciocadev@gmail.com",',
+        '    "email": "marciocadev@gmail.com"',
         '  },',
         '  "wing": {',
         '    "platforms": [',
