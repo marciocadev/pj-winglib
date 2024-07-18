@@ -6,8 +6,8 @@ on:
     branches:
       - main
     paths:
-      - dynamodb/**
-      - '"!dynamodb/package-lock.json"'
+      - /home/marcio/code/pj-winglib/dynamodb/**
+      - '"!/home/marcio/code/pj-winglib/dynamodb/package-lock.json"'
 jobs:
   build-dynamodb:
     runs-on: ubuntu-latest
@@ -36,16 +36,16 @@ jobs:
         working-directory: dynamodb
       - name: Get package version
         run: echo WINGLIB_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
-        working-directory: dynamodb
+        working-directory: /home/marcio/code/pj-winglib/dynamodb
       - name: Echo WINGLIB_VERSION
         run: echo ${{ env.WINGLIB_VERSION }}
       - name: ls
-        run: ls -la
+        run: "ls -la "
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --access=public --registry https://registry.npmjs.org --tag latest *.tgz
-        working-directory: dynamodb
+        working-directory: /home/marcio/code/pj-winglib/dynamodb
       - name: Tag commit
         uses: tvdias/github-tagger@v0.0.1
         with:

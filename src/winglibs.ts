@@ -33,7 +33,7 @@ export class WinglibProject extends Project {
     gitWorkflow.on({
       push: {
         branches: ['main'],
-        paths: [`${this.name}/**`, `"!${this.name}/package-lock.json"`],
+        paths: [`${this.outdir}/**`, `"!${this.outdir}/package-lock.json"`],
       },
     });
     gitWorkflow.addJob(`build-${this.name}`, {
@@ -79,7 +79,7 @@ export class WinglibProject extends Project {
         {
           name: 'Get package version',
           run: 'echo WINGLIB_VERSION=$(node -p "require(\'./package.json\').version") >> "$GITHUB_ENV"',
-          workingDirectory: this.name,
+          workingDirectory: this.outdir,
         },
         {
           name: 'Echo WINGLIB_VERSION',
@@ -87,12 +87,12 @@ export class WinglibProject extends Project {
         },
         {
           name: 'ls',
-          run: 'ls -la',
+          run: `ls -la ${this.outdir}`,
         },
         {
           name: 'Publish',
           run: 'npm publish --access=public --registry https://registry.npmjs.org --tag latest *.tgz',
-          workingDirectory: this.name,
+          workingDirectory: this.outdir,
           env: {
             NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}',
           },
@@ -169,6 +169,8 @@ export class WinglibProject extends Project {
   }
 
   private addTestFile() {
+    if (existsSync(`${this.name}/tests`)) return;
+
     if (!existsSync(`${this.outdir}/tests/${this.name}.test.w`)) {
       const testfile = new SourceCode(this, `tests/${this.name}.test.w`, { readonly: false });
       testfile.line('bring expect;');
@@ -183,6 +185,7 @@ export class WinglibProject extends Project {
   }
 
   private addSourceFile() {
+    if (existsSync(`${this.name}/${this.name}.w`)) return;
     if (!existsSync(`${this.outdir}/${this.name}.w`)) {
       const sourceFile = new SourceCode(this, `${this.name}.w`, { readonly: false });
       sourceFile.line('pub class Adder {');
@@ -194,6 +197,8 @@ export class WinglibProject extends Project {
   }
 
   private addReadme() {
+    if (existsSync(`${this.outdir}/README.md`)) return;
+
     new TextFile(this, 'README.md', {
       readonly: false,
       lines: [
@@ -225,6 +230,8 @@ export class WinglibProject extends Project {
   }
 
   private addPackageJson() {
+    if (existsSync(`${this.outdir}/package.json`)) return;
+
     new TextFile(this, 'package.json', {
       readonly: false,
       lines: [
