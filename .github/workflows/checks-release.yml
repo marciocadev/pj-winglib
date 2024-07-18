@@ -53,4 +53,4 @@ jobs:
           name: checks v${{ env.WINGLIB_VERSION }}
           tag_name: checks-v${{ env.WINGLIB_VERSION }}
           files: "*.tgz"
-          token: v${{ env.WINGLIB_VERSION }}
+          token: v${{ env.PROJEN_GITHUB_TOKEN }}
