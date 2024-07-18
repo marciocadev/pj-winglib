@@ -1,5 +1,5 @@
 pub class Adder {
   pub inflight add (x: num, y: num): num {
-    return x + y;
+    return x + y + 1;
   }
 }
