@@ -87,7 +87,7 @@ export class WinglibProject extends Project {
         },
         {
           name: 'ls',
-          run: 'ls -la',
+          run: `ls -la /${this.name}`,
         },
         {
           name: 'Publish',
@@ -169,7 +169,9 @@ export class WinglibProject extends Project {
   }
 
   private addTestFile() {
-    if (!existsSync(`${this.outdir}/tests/${this.name}.test.w`)) {
+    if (existsSync(`${this.name}/tests`)) return;
+
+    if (!existsSync(`${this.name}/tests/${this.name}.test.w`)) {
       const testfile = new SourceCode(this, `tests/${this.name}.test.w`, { readonly: false });
       testfile.line('bring expect;');
       testfile.line(`bring "../${this.name}.w" as l;`);
@@ -183,7 +185,9 @@ export class WinglibProject extends Project {
   }
 
   private addSourceFile() {
-    if (!existsSync(`${this.outdir}/${this.name}.w`)) {
+    if (existsSync(`${this.name}/${this.name}.w`)) return;
+
+    if (!existsSync(`${this.name}/${this.name}.w`)) {
       const sourceFile = new SourceCode(this, `${this.name}.w`, { readonly: false });
       sourceFile.line('pub class Adder {');
       sourceFile.line('  pub inflight add (x: num, y: num): num {');
@@ -194,6 +198,8 @@ export class WinglibProject extends Project {
   }
 
   private addReadme() {
+    if (existsSync(`${this.name}/README.md`)) return;
+
     new TextFile(this, 'README.md', {
       readonly: false,
       lines: [
@@ -225,6 +231,8 @@ export class WinglibProject extends Project {
   }
 
   private addPackageJson() {
+    if (existsSync(`${this.name}/package.json`)) return;
+
     new TextFile(this, 'package.json', {
       readonly: false,
       lines: [
