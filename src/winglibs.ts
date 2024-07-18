@@ -77,6 +77,20 @@ export class WinglibProject extends Project {
           workingDirectory: this.name,
         },
         {
+          name: 'Automated Version Bump',
+          uses: 'phips28/gh-action-bump-version@master',
+          env: {
+            GITHUB_TOKEN: '${{ secrets.PROJEN_GITHUB_TOKEN }}',
+            PACKAGEJSON_DIR: `"${this.name}"`
+          },
+          with: {
+            "minor-wording": "add,Adds,new",
+            "major-wording": "MAJOR,cut-major",
+            "patch-wording": "patch,fixes",
+            "rc-wording": "RELEASE,alpha"
+          }
+        },
+        {
           name: 'Get package version',
           run: 'echo WINGLIB_VERSION=$(node -p "require(\'./package.json\').version") >> "$GITHUB_ENV"',
           workingDirectory: this.name,
