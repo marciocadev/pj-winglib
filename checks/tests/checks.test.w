@@ -4,5 +4,5 @@ bring "../checks.w" as l;
 let adder = new l.Adder();
 
 test "add() adds two numbers" {
-  expect.equal(adder.add(1, 2), 4);
+  expect.equal(adder.add(1, 2), 3);
 }
