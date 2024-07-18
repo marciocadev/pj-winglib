@@ -40,7 +40,7 @@ jobs:
       - name: Echo WINGLIB_VERSION
         run: echo ${{ env.WINGLIB_VERSION }}
       - name: ls
-        run: ls -la /checks
+        run: ls -la ~/checks
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
