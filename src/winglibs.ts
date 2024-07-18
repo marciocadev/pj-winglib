@@ -87,7 +87,7 @@ export class WinglibProject extends Project {
         },
         {
           name: 'ls',
-          run: `ls -la /${this.name}`,
+          run: `ls -la ~/${this.name}`,
         },
         {
           name: 'Publish',
