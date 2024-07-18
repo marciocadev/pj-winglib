@@ -72,11 +72,6 @@ export class WinglibProject extends Project {
           workingDirectory: this.name,
         },
         {
-          name: 'Pack',
-          run: 'wing pack',
-          workingDirectory: this.name,
-        },
-        {
           name: 'Automated Version Bump',
           uses: 'phips28/gh-action-bump-version@master',
           env: {
@@ -89,6 +84,11 @@ export class WinglibProject extends Project {
             "patch-wording": "patch,fixes",
             "rc-wording": "RELEASE,alpha"
           }
+        },
+        {
+          name: 'Pack',
+          run: 'wing pack',
+          workingDirectory: this.name,
         },
         {
           name: 'Get package version',
