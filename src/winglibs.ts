@@ -83,7 +83,7 @@ export class WinglibProject extends Project {
         },
         {
           name: 'Echo WINGLIB_VERSION',
-          run: 'echo $WINGLIB_VERSION',
+          run: 'echo $\{\{ env.WINGLIB_VERSION \}\}',
         },
         {
           name: 'Publish',
