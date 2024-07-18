@@ -7,6 +7,10 @@
     "url": "https://github.com/marciocadev/pj-winglib.git",
     "directory": "checks"
   },
+  "author": {
+    "name": "Marcio Cruz de Almeida",
+    "email": "marciocadev@gmail.com",
+  },
   "wing": {
     "platforms": [
       "sim"
