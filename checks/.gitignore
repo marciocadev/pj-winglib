@@ -6,5 +6,3 @@ node_modules/
 !/.projen/deps.json
 !/.projen/files.json
 !/LICENSE
-!/package.json
-!/README.md
