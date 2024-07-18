@@ -81,7 +81,7 @@ export class WinglibProject extends Project {
           uses: 'phips28/gh-action-bump-version@master',
           env: {
             GITHUB_TOKEN: '${{ secrets.PROJEN_GITHUB_TOKEN }}',
-            PACKAGEJSON_DIR: `"${this.name}"`
+            PACKAGEJSON_DIR: this.name
           },
           with: {
             "minor-wording": "add,Adds,new",
