@@ -1,6 +1,7 @@
 import { existsSync } from 'fs';
 import { License, Project, ProjectOptions, SourceCode, TextFile } from 'projen';
 import { GitHub, GithubWorkflow } from 'projen/lib/github';
+import { JobPermission } from 'projen/lib/github/workflows-model';
 
 export interface WinglibProjectOptions extends ProjectOptions {
   github: GitHub;
@@ -37,7 +38,9 @@ export class WinglibProject extends Project {
     });
     gitWorkflow.addJob(`build-${this.name}`, {
       runsOn: ['ubuntu-latest'],
-      permissions: {},
+      permissions: {
+        contents: JobPermission.WRITE,
+      },
       steps: [
         {
           name: 'Checkout',
