@@ -38,7 +38,7 @@ jobs:
         uses: phips28/gh-action-bump-version@master
         env:
           GITHUB_TOKEN: ${{ secrets.PROJEN_GITHUB_TOKEN }}
-          PACKAGEJSON_DIR: '"dynamodb"'
+          PACKAGEJSON_DIR: dynamodb
         with:
           minor-wording: add,Adds,new
           major-wording: MAJOR,cut-major
