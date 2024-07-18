@@ -40,7 +40,7 @@ jobs:
       - name: Echo WINGLIB_VERSION
         run: echo ${{ env.WINGLIB_VERSION }}
       - name: ls
-        run: ls -la ~/dynamodb
+        run: pwd && ls -la
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
