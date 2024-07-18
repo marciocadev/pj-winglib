@@ -86,6 +86,10 @@ export class WinglibProject extends Project {
           run: 'echo $\{\{ env.WINGLIB_VERSION \}\}',
         },
         {
+          name: 'ls',
+          run: 'ls -la',
+        },
+        {
           name: 'Publish',
           run: 'npm publish --access=public --registry https://registry.npmjs.org --tag latest *.tgz',
           workingDirectory: this.name,
